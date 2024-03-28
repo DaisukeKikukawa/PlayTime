@@ -15,7 +15,7 @@ worker_timeout 3600 if ENV.fetch("RAILS_ENV", "development") == "development"
 
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
 #
-# port ENV.fetch("PORT") { 3000 }
+port ENV.fetch("PORT") { 3000 }
 # bind "unix://#{Rails.root}/tmp/sockets/puma.sock"
 
 # Specifies the `environment` that Puma will run in.
@@ -44,4 +44,4 @@ pidfile ENV.fetch('PIDFILE') { 'tmp/pids/server.pid' }
 plugin :tmp_restart
 
 app_root = File.expand_path('..', __dir__)
-bind "unix://#{app_root}/tmp/sockets/puma.sock"
+# bind "unix://#{app_root}/tmp/sockets/puma.sock"
