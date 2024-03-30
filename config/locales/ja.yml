@@ -1,0 +1,39 @@
+ja:
+  helpers:
+    label:
+      user:
+        email: "メールアドレス"
+        user_name: "ユーザー名"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認用）"
+  devise:
+    registrations:
+      new:
+        title: "サインアップ"
+        submit: "登録する"
+    sessions:
+      remember_me: "ログイン情報を記憶する"
+      new:
+        title: "ログイン"
+        submit: "ログイン"
+        remember_me: "ログイン情報を記憶する"
+    passwords:
+      new:
+        title: "パスワードの再設定"
+        send_instructions: "パスワードをリセットする"
+      helpers:
+        label:
+          user:
+            email: "メールアドレス"
+    shared:
+      links:
+        log_in: "ログイン"
+        sign_up: "サインアップ"
+        forgot_your_password: "パスワードを忘れた方はこちら"
+        didnt_receive_confirmation_instructions: "確認メールが届かない方はこちら"
+        didnt_receive_unlock_instructions: "アンロックの指示が届かない方はこちら"
+  omniauth:
+    sign_in_with_provider: "%{provider}でサインイン"
+  errors:
+    messages:
+      minimum_password_length: "%{count}文字以上で入力してください"
