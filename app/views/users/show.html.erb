@@ -1,0 +1,48 @@
+<div class="container mt-5">
+<h1>勤怠を検索</h1>
+<%= search_form_for @q, url: user_path(@user), method: :get do |f| %>
+  <div class="form-group">
+    <%= f.label :year_eq, '年' %>
+    <%= f.number_field :year_eq, value: params.dig(:q, :year_eq), class: "form-control",style: "width:10%" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :month_eq, '月' %>
+    <%= f.number_field :month_eq, value: params.dig(:q, :month_eq), class: "form-control" ,style: "width:10%" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit 'Search', class: "btn btn-primary mt-2" %>
+  </div>
+<% end %>
+
+<%= link_to 'CSVダウンロード', download_csv_user_path(@user, q: { year_eq: params.dig(:q, :year_eq), month_eq: params.dig(:q, :month_eq) }), class: 'btn btn-primary mt-5' %>
+
+  <h2 style="font-size: 24px;" class="mb-5 mt-5">勤怠記録一覧</h2>
+  <div class="table-responsive">
+    <table class="table" style="table-layout: fixed; width: 100%;">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col" style="width: 25%; font-size: 16px;">日付</th>
+          <th scope="col" style="width: 25%; font-size: 16px;">出勤時間</th>
+          <th scope="col" style="width: 25%; font-size: 16px;">退勤時間</th>
+          <th scope="col" style="width: 25%; font-size: 16px;">休憩時間</th>
+          <th scope="col" style="width: 20%; font-size: 16px;"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @attendances.each do |attendance| %>
+          <tr>
+            <td style="font-size: 14px; vertical-align: middle;"><%= attendance.date&.strftime("%Y/%m/%d") %></td>
+            <td style="font-size: 14px; vertical-align: middle;"><%= attendance.clockin_time.strftime("%H:%M") if attendance.clockin_time %></td>
+            <td style="font-size: 14px; vertical-align: middle;"><%= attendance.clockout_time.strftime("%H:%M") if attendance.clockout_time %></td>
+            <td style="font-size: 14px; vertical-align: middle;"><%= attendance.break_time %> 分</td>
+            <td style="font-size: 16px; vertical-align: middle;">
+              <%= link_to '編集', edit_attendance_path(attendance), class: 'btn btn-primary btn-lg' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

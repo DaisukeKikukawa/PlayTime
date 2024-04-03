@@ -1,0 +1,30 @@
+<div class="d-flex justify-content-center align-items-center" >
+  <div class="m-4" >
+    <%= form_with model: @attendance do |f| %>
+
+      <div class="form-group mb-5">
+        <label class="form-label" style="font-size: 15px;">今日の日付: <%= Date.today.strftime("%Y/%m/%d") %></label>
+      </div>
+
+      <div class="form-group mb-5">
+        <%= f.label :clockin_time, "出勤時刻",class: "form-label", style: "font-size: 15px;" %>
+        <%= f.time_field :clockin_time, autofocus: true,class: 'form-control form-control-lg', style: 'width: 200px' %>
+      </div>
+
+      <div class="form-group mb-5">
+        <%= f.label :clockout_time, "退勤時刻",class: "form-label", style: "font-size: 15px;" %>
+        <%= f.time_field :clockout_time, autofocus: true,class: 'form-control form-control-lg', style: 'width: 200px' %>
+      </div>
+
+      <div class="form-group mb-3">
+        <%= f.label :break_time, "休憩時間（分）",class: "form-label", style: "font-size: 15px;" %>
+        <%= f.number_field :break_time, autofocus: true,class: 'form-control form-control-lg', style: 'width: 200px', placeholder: "（例）30",min: 0 %>
+      </div>
+
+      <div>
+        <%= f.submit "修正する", class: 'btn btn-primary btn-lg mt-3 mb-3' %>
+      </div>
+    <% end %>
+
+  </div>
+</div>

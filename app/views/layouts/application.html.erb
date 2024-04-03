@@ -11,40 +11,53 @@
   </head>
 
   <body>
-  <%# headerここから %>
-<header class="navbar navbar-expand-lg navbar-light bg-light py-5">
-  <div class="container-fluid">
-    <h1 class="navbar-brand mb-0 fs-2">
-      <%= link_to '勤怠管理', root_path,style: "text-decoration: none; color: black;margin-right:24px;" %>
-    </h1>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav ms-auto">
-        <% if user_signed_in? %>
-          <li class="nav-item">
-            <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: 'nav-link fs-4' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'タイムカード', new_attendance_path, class: 'nav-link fs-4' %>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to 'hoge', "#", class: 'nav-link fs-4' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'ログイン', new_user_session_path, class: "nav-link fs-4" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to '新規登録', new_user_registration_path, class: 'nav-link fs-4' %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-</header>
-<%# headerここまで %>
+    <header class="navbar navbar-expand-lg navbar-light bg-light py-5">
+      <div class="container-fluid">
+        <h1 class="navbar-brand mb-0 fs-2">
+          <%= link_to '勤怠管理', root_path,style: "text-decoration: none; color: black;margin-right:24px;" %>
+        </h1>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ms-auto">
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: 'nav-link fs-4' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'タイムカード', new_attendance_path, class: 'nav-link fs-4' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'マイページ', user_path(current_user), class: 'nav-link fs-4' %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to 'hoge', "#", class: 'nav-link fs-4' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'ログイン', new_user_session_path, class: "nav-link fs-4" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to '新規登録', new_user_registration_path, class: 'nav-link fs-4' %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <% flash.each do |key, value| %>
+      <% bootstrap_class = case key
+                          when 'notice' then 'alert-success'
+                          when 'alert' then 'alert-danger'
+                          else 'alert-info'
+                          end %>
+      <div class="alert <%= bootstrap_class %> alert-dismissible fade show" role="alert" style="text-align: center; font-size: 1.25rem;">
+        <%= value %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% end %>
 
     <%= yield %>
   </body>
