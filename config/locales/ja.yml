@@ -23,6 +23,9 @@ ja:
         title: "ログイン"
         submit: "ログイン"
         remember_me: "ログイン情報を記憶する"
+      user:
+        signed_out: "ログアウトしました。"
+      signed_out: "ログアウトしました。"
     passwords:
       new:
         title: "パスワードの再設定"
@@ -43,3 +46,18 @@ ja:
   errors:
     messages:
       minimum_password_length: "%{count}文字以上で入力してください"
+  activerecord:
+    errors:
+      models:
+        attendance:
+          attributes:
+            clockin_time:
+              blank: "出勤時間が入力されていません。"
+      messages:
+        blank: "が入力されていません。"
+  errors:
+    attributes:
+      clockin_time:
+        blank: "が入力されていません。"
+    messages:
+      blank: "が入力されていません。"
