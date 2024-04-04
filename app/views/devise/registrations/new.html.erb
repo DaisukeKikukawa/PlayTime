@@ -13,7 +13,7 @@
       <div class="form-group mb-3">
         <%= f.label :password %>
         <% if @minimum_password_length %>
-        <em>（<%= I18n.t("errors.messages.minimum_password_length", count: @minimum_password_length) %>）</em>
+        <em>（6文字以上で入力して下さい ）</em>
         <% end %><br />
         <%= f.password_field :password, autocomplete: "new-password", class: 'form-control form-control-lg' %>
       </div>
