@@ -29,7 +29,8 @@ class AttendancesController < ApplicationController
     if @attendance.update(attendance_params)
       redirect_to user_path(current_user)
     else
-      render edit
+      flash.now[:alert] = "保存に失敗しました"
+      render :edit
     end
   end
 
