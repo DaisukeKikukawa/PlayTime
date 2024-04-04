@@ -45,6 +45,9 @@ ja:
     sign_in_with_provider: "%{provider}でサインイン"
   errors:
     messages:
+      not_saved:
+        one: "このオブジェクトは次の理由で保存されませんでした：%{resource}を保存できませんでした。"
+        other: "このオブジェクトは次の%{count}つの理由で保存されませんでした："
       minimum_password_length: "%{count}文字以上で入力してください"
   activerecord:
     errors:
